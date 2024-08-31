@@ -462,6 +462,7 @@ def Generate_Plate(prctg, ifborder=False):
 st.markdown(
     """
     <h1 style='text-align: center;'>Plate Generator</h1>
+    <h3 style='text-align: center;'>בשיתוף פעולה עם המחלקה למתמתיקה שימושית</h3>
     """,
     unsafe_allow_html=True
 )
