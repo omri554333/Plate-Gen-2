@@ -482,14 +482,11 @@ with col2:
     st.write("")
     st.write("")
 
-    # Slider for selecting percentage without numbers
+    # Slider for selecting percentage
     percentage = st.slider("", format=" ")
 
-    # Create a placeholder for centering the button
-    button_placeholder = st.empty()
-
-    # Center the button using the placeholder
-    if button_placeholder.button("Generate Plate"):
+    # Button in the middle column
+    if st.button("Generate Plate"):
         st.write(f"Generating plate...")
         generated_image = Generate_Plate(percentage / 100)
 
