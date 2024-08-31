@@ -493,6 +493,11 @@ with col2:
     # Slider for selecting percentage
     percentage = st.slider("", format=" ")
 
+    button_placeholder = st.empty()
+    button_placeholder = st.empty()
+    button_placeholder = st.empty()
+    button_placeholder = st.empty()
+
     # Python code handling
     if st.button("Generate Plate"):
         st.write(f"Generating plate...")
