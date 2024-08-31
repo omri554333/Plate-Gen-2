@@ -457,6 +457,7 @@ def Generate_Plate(prctg, ifborder=False):
 
     return final_design
 
+
 # Title of the app
 st.title("Plate Generator")
 
@@ -471,12 +472,13 @@ st.image(image3, caption="Image 1-03", use_column_width=True)
 # Create three columns
 col1, col2, col3 = st.columns([1, 2, 1])
 
-# Display images to the left and right of the slider
+# Add some vertical space above the slider
 with col1:
     st.image(image1, caption="Image 1-01", use_column_width=True)
 
 with col2:
-    # Create a slider in the middle column
+    st.write("")  # Adds an empty line for spacing
+    st.write("")  # Adds more space; adjust as needed
     percentage = st.slider("Select Percentage", 0, 100, 50)
 
 with col3:
