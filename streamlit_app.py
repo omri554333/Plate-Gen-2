@@ -475,7 +475,7 @@ image3 = Image.open("1-03.jpg")
 # Display the image at the top
 st.image(image3, use_column_width=True)
 
-# Create three columns
+# Create three columns for the main layout
 col1, col2, col3 = st.columns([1, 2, 1])
 
 # Add images to the left and right columns, and the slider in the middle
@@ -483,33 +483,29 @@ with col1:
     st.image(image1, use_column_width=True)
 
 with col2:
-    st.write("")  # Adds an empty line for spacing
-    st.write("")  # Adds more space; adjust as needed
+    # Add vertical space before the slider
     st.write("")
     st.write("")
 
-    # Slider for selecting percentage
-    percentage = st.slider("", format=" ")
+    # Slider for selecting percentage with a non-empty label
+    percentage = st.slider("Select Percentage", format=" ")
 
-    # Center the button using a centered column layout
-    st.write("")  # Add empty lines to adjust vertical space
+    # Add vertical space before the button
     st.write("")
     st.write("")
 
-    # Create another column layout for centering the button
-    button_center_col = st.columns([1, 1, 1])
-    with button_center_col[1]:  # Center the button in the middle column
-        if st.button("Generate Plate"):
-            st.write(f"Generating plate with {percentage}%...")
-            generated_image = Generate_Plate(percentage / 100)
+    # Center the button and handle its click
+    if st.button("Generate Plate"):
+        st.write(f"Generating plate with {percentage}%...")
+        generated_image = Generate_Plate(percentage / 100)
 
-            # Convert to PIL format for display
-            generated_image_pil = Image.fromarray(generated_image)
+        # Convert to PIL format for display
+        generated_image_pil = Image.fromarray(generated_image)
 
-            # Create a new layout for the image to center it
-            image_center_col1, image_center_col2, image_center_col3 = st.columns([1, 2, 1])
-            with image_center_col2:  # Center the image in the middle column
-                st.image(generated_image_pil, use_column_width=True)
+        # Use a single set of columns to center the image
+        left_space, centered_image_col, right_space = st.columns([1, 2, 1])
+        with centered_image_col:
+            st.image(generated_image_pil, width=600)  # Adjust the width as needed
 
 with col3:
     st.image(image2, use_column_width=True)
