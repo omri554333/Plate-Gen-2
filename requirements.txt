@@ -1,6 +1,5 @@
 pip==24.2
 streamlit
 numpy
-opencv-python
 opencv-python-headless
 Pillow
