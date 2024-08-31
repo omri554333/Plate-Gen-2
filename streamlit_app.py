@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import streamlit as st
 import numpy as np
 import os
@@ -450,12 +449,6 @@ def Generate_Plate(prctg, ifborder=False):
         final_design[mask] = border[mask]
     final_design = cv2.cvtColor(final_design, cv2.COLOR_BGR2RGB)
 
-    # # Display the final plate design
-    # rescaled=scale_image(final_design, 0.21484375)
-    # plt.figure(figsize=(10, 10))
-    # plt.imshow(final_design)
-    # plt.axis('off')
-    # plt.show()
     return final_design
 
 # Streamlit App
