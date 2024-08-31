@@ -479,7 +479,12 @@ with col1:
 with col2:
     st.write("")  # Adds an empty line for spacing
     st.write("")  # Adds more space; adjust as needed
-    st.write("")st.write("") st.write("") st.write("") st.write("") st.write("") 
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("") 
+    st.write("")
+    st.write("")
     percentage = st.slider("Select Percentage", 0, 100, 50)
 
 with col3:
