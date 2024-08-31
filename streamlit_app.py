@@ -493,7 +493,17 @@ with col2:
     # Slider for selecting percentage
     percentage = st.slider("", format=" ")
 
-    # Button in the middle column
+    # Use HTML to center the button
+    st.markdown(
+        """
+        <div style='display: flex; justify-content: center;'>
+            <button onclick="window.streamlitSend(1);">Generate Plate</button>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Python code handling
     if st.button("Generate Plate"):
         st.write(f"Generating plate...")
         generated_image = Generate_Plate(percentage / 100)
