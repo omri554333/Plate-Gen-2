@@ -472,7 +472,7 @@ st.image(image3, use_column_width=True)
 # Create three columns
 col1, col2, col3 = st.columns([1, 2, 1])
 
-# Add some vertical space above the slider
+# Add images to the left and right columns, and the slider in the middle
 with col1:
     st.image(image1, use_column_width=True)
 
@@ -482,16 +482,19 @@ with col2:
     st.write("")
     st.write("")
 
+    # Slider for selecting percentage
     percentage = st.slider("Select Percentage", 0, 100, 50)
+
+    # Button in the middle column
+    if st.button("Generate Plate"):
+        st.write(f"Generating plate with {percentage}%...")
+        generated_image = Generate_Plate(percentage / 100)
+
+        # Convert to PIL format for display
+        generated_image_pil = Image.fromarray(generated_image)
+
+        # Display the generated plate in the middle column
+        st.image(generated_image_pil, use_column_width=True)
 
 with col3:
     st.image(image2, use_column_width=True)
-
-# Button to generate the plate
-if st.button("Generate Plate"):
-    st.write(f"Generating plate with {percentage}%...")
-    generated_image = Generate_Plate(percentage / 100)
-
-    # Convert to PIL format for display
-    generated_image_pil = Image.fromarray(generated_image)
-    st.image(generated_image_pil, use_column_width=True)
