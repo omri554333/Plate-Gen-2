@@ -483,7 +483,7 @@ with col2:
     st.write("")
 
     # Slider for selecting percentage
-    percentage = st.slider("Select Percentage", 0, 100, 50)
+    percentage = st.slider("Select Percentage")
 
     # Button in the middle column
     if st.button("Generate Plate"):
