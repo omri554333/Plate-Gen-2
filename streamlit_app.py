@@ -506,12 +506,10 @@ with col2:
             # Convert to PIL format for display
             generated_image_pil = Image.fromarray(generated_image)
 
-            # Center the generated plate image using HTML in Markdown
-            st.markdown(
-                f"<div style='display: flex; justify-content: center;'><img src='data:image/png;base64,{generated_image_pil}' width='600'/></div>",
-                unsafe_allow_html=True,
-            )
+            # Create columns to center the generated image
+            image_center_col1, image_center_col2, image_center_col3 = st.columns([1, 2, 1])
+            with image_center_col2:  # Center the image in the middle column
+                st.image(generated_image_pil, width=600)  # Adjust width as needed
 
 with col3:
     st.image(image2, use_column_width=True)
-
