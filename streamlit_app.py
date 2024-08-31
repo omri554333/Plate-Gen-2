@@ -462,8 +462,8 @@ def Generate_Plate(prctg, ifborder=False):
 st.markdown(
     """
     <style>
-    .stSlider > div > div > div > input[type=range] {
-        accent-color: #3498db;  /* Change this hex code to your desired color */
+    .stSlider > div[data-baseweb="slider"] > div > div > div:first-child {
+        background: none; /* Remove the filling line */
     }
     </style>
     """,
