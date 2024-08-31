@@ -506,11 +506,10 @@ with col2:
             # Convert to PIL format for display
             generated_image_pil = Image.fromarray(generated_image)
 
-            # Convert to PIL format for display
-            generated_image_pil = Image.fromarray(generated_image)
-
-            # Display the generated plate in the middle column
-            st.image(generated_image_pil, use_column_width=False)
+            # Create a new layout for the image to center it
+            image_center_col1, image_center_col2, image_center_col3 = st.columns([1, 2, 1])
+            with image_center_col2:  # Center the image in the middle column
+                st.image(generated_image_pil, use_column_width=True)
 
 with col3:
     st.image(image2, use_column_width=True)
