@@ -461,17 +461,6 @@ def Generate_Plate(prctg, ifborder=False):
 # Centered title using Markdown with HTML
 st.markdown(
     """
-    <style>
-    .stSlider > div[data-baseweb="slider"] > div > div > div:first-child {
-        background: none; /* Remove the filling line */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
     <h1 style='text-align: center;'>Plate Generator</h1>
     <h3 style='text-align: center;'>בשיתוף פעולה עם המחלקה למתמתיקה שימושית</h3>
     \n
