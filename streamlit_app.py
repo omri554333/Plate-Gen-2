@@ -510,7 +510,7 @@ with col2:
             generated_image_pil = Image.fromarray(generated_image)
 
             # Display the generated plate in the middle column
-            st.image(generated_image_pil, use_column_width=True)
+            st.image(generated_image_pil, use_column_width=False)
 
 with col3:
     st.image(image2, use_column_width=True)
