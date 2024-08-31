@@ -482,9 +482,8 @@ with col2:
     st.write("")
     st.write("")
     st.write("")
-    st.write("") 
     st.write("")
-    st.write("")
+
     percentage = st.slider("Select Percentage", 0, 100, 50)
 
 with col3:
