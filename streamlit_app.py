@@ -482,12 +482,26 @@ with col2:
     st.write("")
     st.write("")
 
-    # Slider for selecting percentage
+    # Slider for selecting percentage without numbers
     percentage = st.slider("", format=" ")
+
+    # Centering the button using HTML and CSS
+    st.markdown(
+        """
+        <style>
+        .center-button {
+            display: flex;
+            justify-content: center;
+        }
+        </style>
+        <div class="center-button">
+        """,
+        unsafe_allow_html=True,
+    )
 
     # Button in the middle column
     if st.button("Generate Plate"):
-        st.write(f"Generating plate with {percentage}%...")
+        st.write(f"Generating plate...")
         generated_image = Generate_Plate(percentage / 100)
 
         # Convert to PIL format for display
@@ -495,6 +509,9 @@ with col2:
 
         # Display the generated plate in the middle column
         st.image(generated_image_pil, use_column_width=True)
+
+    # Closing the div tag
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with col3:
     st.image(image2, use_column_width=True)
