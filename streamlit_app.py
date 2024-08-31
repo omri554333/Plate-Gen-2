@@ -458,60 +458,13 @@ def Generate_Plate(prctg, ifborder=False):
     return final_design
 
 
-# # Centered title using Markdown with HTML
-# st.markdown(
-#     """
-#     <h1 style='text-align: center;'>Plate Generator</h1>
-#     <h3 style='text-align: center;'>בשיתוף פעולה עם המחלקה למתמתיקה שימושית</h3>
-#     \n
-#     \n
-#     """,
-#     unsafe_allow_html=True
-# )
-#
-# # Load the images
-# image1 = Image.open("1-02.jpg")
-# image2 = Image.open("1-01.jpg")
-# image3 = Image.open("1-03.jpg")
-#
-# # Display the image at the top
-# st.image(image3, use_column_width=True)
-#
-# # Create three columns
-# col1, col2, col3 = st.columns([1, 2, 1])
-#
-# # Add images to the left and right columns, and the slider in the middle
-# with col1:
-#     st.image(image1, use_column_width=True)
-#
-# with col2:
-#     st.write("")  # Adds an empty line for spacing
-#     st.write("")  # Adds more space; adjust as needed
-#     st.write("")
-#     st.write("")
-#
-#     # Slider for selecting percentage
-#     percentage = st.slider("", format=" ")
-#
-#     # Python code handling
-#     if st.button("Generate Plate"):
-#         st.write(f"Generating plate...")
-#         generated_image = Generate_Plate(percentage / 100)
-#
-#         # Convert to PIL format for display
-#         generated_image_pil = Image.fromarray(generated_image)
-#
-#         # Display the generated plate in the middle column
-#         st.image(generated_image_pil, use_column_width=True)
-#
-# with col3:
-#     st.image(image2, use_column_width=True)
-
 # Centered title using Markdown with HTML
 st.markdown(
     """
     <h1 style='text-align: center;'>Plate Generator</h1>
     <h3 style='text-align: center;'>בשיתוף פעולה עם המחלקה למתמתיקה שימושית</h3>
+    \n
+    \n
     """,
     unsafe_allow_html=True
 )
@@ -540,15 +493,18 @@ with col2:
     # Slider for selecting percentage
     percentage = st.slider("", format=" ")
 
-    # Use HTML to center the button
-    st.markdown(
-        f"""
-        <div style='display: flex; justify-content: center;'>
-            <button onclick="alert('Generating plate with {percentage}%...');">Generate Plate</button>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    # Python code handling
+    if st.button("Generate Plate"):
+        st.write(f"Generating plate...")
+        generated_image = Generate_Plate(percentage / 100)
+
+        # Convert to PIL format for display
+        generated_image_pil = Image.fromarray(generated_image)
+
+        # Display the generated plate in the middle column
+        st.image(generated_image_pil, use_column_width=True)
 
 with col3:
     st.image(image2, use_column_width=True)
+
+
