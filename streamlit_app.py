@@ -458,8 +458,13 @@ def Generate_Plate(prctg, ifborder=False):
     return final_design
 
 
-# Title of the app
-st.title("Plate Generator")
+# Centered title using Markdown with HTML
+st.markdown(
+    """
+    <h1 style='text-align: center;'>Plate Generator</h1>
+    """,
+    unsafe_allow_html=True
+)
 
 # Load the images
 image1 = Image.open("1-02.jpg")
