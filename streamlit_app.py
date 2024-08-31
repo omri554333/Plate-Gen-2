@@ -457,14 +457,36 @@ def Generate_Plate(prctg, ifborder=False):
 
     return final_design
 
-# Streamlit App
+# Title of the app
 st.title("Plate Generator")
 
-percentage = st.slider("Select Percentage", 0, 100, 50)
+# Load the images
+image1 = Image.open("1-01.jpg")
+image2 = Image.open("1-02.jpg")
+image3 = Image.open("1-03.jpg")
 
+# Display the image at the top
+st.image(image3, caption="Image 1-03", use_column_width=True)
+
+# Create three columns
+col1, col2, col3 = st.columns([1, 2, 1])
+
+# Display images to the left and right of the slider
+with col1:
+    st.image(image1, caption="Image 1-01", use_column_width=True)
+
+with col2:
+    # Create a slider in the middle column
+    percentage = st.slider("Select Percentage", 0, 100, 50)
+
+with col3:
+    st.image(image2, caption="Image 1-02", use_column_width=True)
+
+# Button to generate the plate
 if st.button("Generate Plate"):
     st.write(f"Generating plate with {percentage}%...")
     generated_image = Generate_Plate(percentage / 100)
 
+    # Convert to PIL format for display
     generated_image_pil = Image.fromarray(generated_image)
     st.image(generated_image_pil, caption="Generated Plate Design", use_column_width=True)
