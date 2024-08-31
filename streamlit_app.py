@@ -1,17 +1,17 @@
-# import streamlit as st
-# import numpy as np
-# import os
-# import shutil
-# from PIL import Image, ImageFilter, ImageOps, ImageDraw
-# import gc
-# import random
-# import cv2
-# import math
+import streamlit as st
+import numpy as np
+import os
+import shutil
+from PIL import Image, ImageFilter, ImageOps, ImageDraw
+import gc
+import random
+import cv2
+import math
 
 
 
 def generate_strewbarrie():
-    folder_path = 'new plan/colored strwbarries'
+    folder_path = os.path.join(os.getcwd(), 'new plan/colored strwbarries')
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -20,7 +20,8 @@ def generate_strewbarrie():
 
 
 def generate_rose():
-    folder_path = 'new plan/colored flowers'
+    path = 'new plan/colored flowers'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -29,7 +30,8 @@ def generate_rose():
 
 
 def generate_dot():
-    folder_path = 'new plan/colored dots'
+    path = 'new plan/colored dots'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -38,7 +40,8 @@ def generate_dot():
 
 
 def generate_small_flower():
-    folder_path = 'new plan/colored small flowers'
+    path = 'new plan/colored small flowers'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -47,7 +50,8 @@ def generate_small_flower():
 
 
 def generate_blueberrie():
-    folder_path = 'new plan/colored bluebarries'
+    path = 'new plan/colored bluebarries'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -56,7 +60,8 @@ def generate_blueberrie():
 
 
 def generate_redberrie():
-    folder_path = 'new plan/colored redbarries'
+    path = 'new plan/colored redbarries'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
@@ -65,7 +70,8 @@ def generate_redberrie():
 
 
 def generate_leaf():
-    folder_path = 'new plan/colored leaf'
+    path = 'new plan/colored leaf'
+    folder_path = os.path.join(os.getcwd(), path)
     file_list = os.listdir(folder_path)
     random_file = random.choice(file_list)
     img_path = os.path.join(folder_path, random_file)
