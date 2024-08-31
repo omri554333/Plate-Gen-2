@@ -506,10 +506,9 @@ with col2:
             # Convert to PIL format for display
             generated_image_pil = Image.fromarray(generated_image)
 
-            # Display the generated plate in the middle column
-            st.image(generated_image_pil, use_column_width=True)
+            # Display the generated plate in the middle column with a larger width
+            st.image(generated_image_pil, width=600)  # Adjust width as needed
 
 with col3:
     st.image(image2, use_column_width=True)
-
 
