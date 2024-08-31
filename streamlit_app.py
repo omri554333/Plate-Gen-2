@@ -462,8 +462,8 @@ def Generate_Plate(prctg, ifborder=False):
 st.title("Plate Generator")
 
 # Load the images
-image1 = Image.open("1-01.jpg")
-image2 = Image.open("1-02.jpg")
+image1 = Image.open("1-02.jpg")
+image2 = Image.open("1-01.jpg")
 image3 = Image.open("1-03.jpg")
 
 # Display the image at the top
