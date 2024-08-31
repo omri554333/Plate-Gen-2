@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import streamlit as st
 import numpy as np
 import os
 import shutil
@@ -9,6 +10,7 @@ import cv2
 import math
 
 
+
 def generate_strewbarrie():
     folder_path = 'new plan/colored strwbarries'
     file_list = os.listdir(folder_path)
@@ -16,6 +18,7 @@ def generate_strewbarrie():
     img_path = os.path.join(folder_path, random_file)
     img = cv2.imread(img_path)
     return img
+
 
 def generate_rose():
     folder_path = 'new plan/colored flowers'
@@ -25,6 +28,7 @@ def generate_rose():
     img = cv2.imread(img_path)
     return img
 
+
 def generate_dot():
     folder_path = 'new plan/colored dots'
     file_list = os.listdir(folder_path)
@@ -32,6 +36,7 @@ def generate_dot():
     img_path = os.path.join(folder_path, random_file)
     img = cv2.imread(img_path)
     return img
+
 
 def generate_small_flower():
     folder_path = 'new plan/colored small flowers'
@@ -41,6 +46,7 @@ def generate_small_flower():
     img = cv2.imread(img_path)
     return img
 
+
 def generate_blueberrie():
     folder_path = 'new plan/colored bluebarries'
     file_list = os.listdir(folder_path)
@@ -49,6 +55,7 @@ def generate_blueberrie():
     img = cv2.imread(img_path)
     return img
 
+
 def generate_redberrie():
     folder_path = 'new plan/colored redbarries'
     file_list = os.listdir(folder_path)
@@ -56,7 +63,8 @@ def generate_redberrie():
     img_path = os.path.join(folder_path, random_file)
     img = cv2.imread(img_path)
     return img
-    
+
+
 def generate_leaf():
     folder_path = 'new plan/colored leaf'
     file_list = os.listdir(folder_path)
@@ -65,13 +73,15 @@ def generate_leaf():
     img = cv2.imread(img_path)
     return img
 
+
 # Function to draw a vine with small branches
 def rotate_image(image, angle):
     h, w = image.shape[:2]
     center = (w // 2, h // 2)
     M = cv2.getRotationMatrix2D(center, angle, 1.0)
-    rotated = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
-    no_bg,_=remove_background(rotated)
+    rotated = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT,
+                             borderValue=(255, 255, 255))
+    no_bg, _ = remove_background(rotated)
     return no_bg
 
 
@@ -448,185 +458,14 @@ def Generate_Plate(prctg, ifborder=False):
     # plt.show()
     return final_design
 
-# Call the function to generate and display the plate design
-# plate=Generate_Plate(0)
+# Streamlit App
+st.title("Plate Generator")
 
-# import tkinter as tk
-# from tkinter import ttk
+percentage = st.slider("Select Percentage", 0, 100, 50)
 
-# def on_scale_change(event):
-#     # Get the current value of the scale
-#     value = percentage_var.get()
-#     # Round to the nearest multiple of 10
-#     rounded_value = round(value / 10) * 10
-#     # Set the rounded value back to the scale
-#     scale.set(rounded_value)
-#     # Update the label with the rounded value
-#     percentage_var.set(rounded_value)
+if st.button("Generate Plate"):
+    st.write(f"Generating plate with {percentage}%...")
+    generated_image = Generate_Plate(percentage / 100)
 
-# def on_button_click():
-#     selected_percentage = percentage_var.get()
-#     print(f"Selected Percentage: {selected_percentage}%")
-#     Generate_Plate(selected_percentage/100)  
-
-# # Create the main window
-# root = tk.Tk()
-# root.title("Plate Generator")
-# root.geometry("600x400")  # Set the size of the window to 600x400 pixels
-
-# # Create a frame to hold the meter and button
-# frame = ttk.Frame(root, padding="20")
-# frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-# frame.columnconfigure(0, weight=1)
-# frame.rowconfigure(0, weight=1)
-
-# # Create a variable to store the selected percentage
-# percentage_var = tk.IntVar(value=0)
-
-# # Create the meter (scale) in the middle of the screen
-# scale = ttk.Scale(frame, from_=0, to=100, orient="horizontal", length=400, variable=percentage_var)
-# scale.grid(row=0, column=0, padx=20, pady=20)
-# scale.bind("<ButtonRelease-1>", on_scale_change)  # Bind the scale change event
-# scale.bind("<Motion>", on_scale_change)  # Bind the scale change event
-
-# # Create a label to show the selected percentage
-# percentage_label = ttk.Label(frame, textvariable=percentage_var, font=("Helvetica", 14))
-# percentage_label.grid(row=1, column=0, pady=20)
-
-# # Create the button below the meter
-# button = ttk.Button(frame, text="Submit", command=on_button_click)
-# button.grid(row=2, column=0, pady=20)
-
-# # Ensure the frame expands to fill the window
-# root.grid_columnconfigure(0, weight=1)
-# root.grid_rowconfigure(0, weight=1)
-
-# # Run the application
-# root.mainloop()
-
-import tkinter as tk
-from tkinter import ttk
-import cv2
-from PIL import Image, ImageTk
-
-
-def on_scale_change(event):
-    value = percentage_var.get()
-    rounded_value = round(value / 10) * 10
-    scale.set(rounded_value)
-
-
-def on_scale_click(event):
-    # Calculate the value based on the click position
-    new_value = int((event.x / scale.winfo_width()) * 100)  # Adjust range if necessary
-    scale.set(new_value)  # Set the scale to the calculated value
-    percentage_var.set(new_value)  # Update the variable
-
-
-def on_button_click():
-    # Disable the button to prevent further clicks while processing
-    button.config(state=tk.DISABLED)
-
-    selected_percentage = percentage_var.get()
-    # print(f"Selected Percentage: {selected_percentage}%")
-
-    # Generate the plate image
-    generated_image = Generate_Plate(selected_percentage / 100)
-
-    # Resize the generated image for display
-    generated_image = cv2.resize(generated_image, (400, 400), interpolation=cv2.INTER_LANCZOS4)
-    generated_image = Image.fromarray(generated_image)
-    generated_photo = ImageTk.PhotoImage(generated_image)
-
-    # Update the label with the new image
-    generated_image_label.config(image=generated_photo)
-    generated_image_label.image = generated_photo  # Keep a reference to avoid garbage collection
-
-    # Re-enable the button after processing is complete
-    button.config(state=tk.NORMAL)
-
-
-# Create the main window
-root = tk.Tk()
-root.title("Plate Generator בשיתוף פעולה עם המחלקה למתמתיקה שימושית")
-root.geometry("1980x1020")  # Set the size of the window to 1800x1000 pixels
-
-style = ttk.Style()
-style.configure('TFrame', background='#FFFFFF')  # Set the background color for ttk.Frame
-
-# Create a frame to hold the scale, images, and button
-frame = ttk.Frame(root, padding="20")
-frame.grid(row=4, column=4, sticky=(tk.W, tk.E, tk.N, tk.S))
-frame.columnconfigure(0, weight=1)
-frame.rowconfigure(0, weight=1)
-
-# Create a variable to store the selected percentage
-percentage_var = tk.IntVar(value=0)
-
-# Create the scale in the middle of the screen with increased length
-scale = ttk.Scale(frame, from_=0, to=100, orient="horizontal", length=800, variable=percentage_var, style="TScale")
-scale.grid(row=4, column=1, padx=20, pady=20)
-
-# Bind click events to change the scale value directly on click
-scale.bind("<Button-1>", on_scale_click)  # Set value on click
-
-# Create the button below the scale
-button = tk.Button(frame, text="Submit", command=on_button_click, width=20, height=3)
-button.grid(row=5, column=1, padx=20, pady=20)  # Increase padding for size
-
-# Load and add the first image on the left
-image_path1 = '1-02.jpg'
-image1 = cv2.imread(image_path1)
-image1 = cv2.cvtColor(image1, cv2.COLOR_BGR2RGB)  # Convert from BGR to RGB
-image1 = cv2.resize(image1, (200, 200), interpolation=cv2.INTER_LANCZOS4)
-
-# Convert the image to a format compatible with Tkinter
-image1 = Image.fromarray(image1)
-photo1 = ImageTk.PhotoImage(image1)
-
-left_image_label = tk.Label(frame, image=photo1)
-left_image_label.grid(row=4, column=0, padx=20, pady=10)
-
-# Load and add the second image on the right
-image_path2 = '1-01.jpg'
-image2 = cv2.imread(image_path2)
-image2 = cv2.cvtColor(image2, cv2.COLOR_BGR2RGB)  # Convert from BGR to RGB
-image2 = cv2.resize(image2, (200, 200), interpolation=cv2.INTER_LANCZOS4)
-
-# Convert the image to a format compatible with Tkinter
-image2 = Image.fromarray(image2)
-photo2 = ImageTk.PhotoImage(image2)
-
-right_image_label = tk.Label(frame, image=photo2)
-right_image_label.grid(row=4, column=3, padx=20, pady=10)
-
-# Load and add the new image above the generated image
-image_path3 = '1-03.jpg'  # Add the path to your new image
-image3 = cv2.imread(image_path3)
-image3 = cv2.cvtColor(image3, cv2.COLOR_BGR2RGB)  # Convert from BGR to RGB
-scale_factor = 1.1
-
-# Get the original dimensions
-original_height, original_width = image3.shape[:2]
-
-# Calculate new dimensions
-new_dimensions = (int(original_width * scale_factor), int(original_height * scale_factor))
-
-# Resize the image using the new dimensions
-# image3 = cv2.resize(image3, new_dimensions, interpolation=cv2.INTER_LANCZOS4)
-
-# Convert the image to a format compatible with Tkinter
-image3 = Image.fromarray(image3)
-photo3 = ImageTk.PhotoImage(image3)
-
-# Create a label to display the new image
-top_image_label = tk.Label(frame, image=photo3)
-top_image_label.grid(row=0, column=1)
-
-# Create a label to display the generated image in the upper middle
-generated_image_label = tk.Label(frame)
-generated_image_label.grid(row=1, column=1, padx=20, pady=20, rowspan=2, columnspan=1)
-
-# Run the application
-root.mainloop()
-
+    generated_image_pil = Image.fromarray(generated_image)
+    st.image(generated_image_pil, caption="Generated Plate Design", use_column_width=True)
