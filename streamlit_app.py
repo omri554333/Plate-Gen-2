@@ -463,8 +463,6 @@ st.markdown(
     """
     <h1 style='text-align: center;'>Plate Generator</h1>
     <h3 style='text-align: center;'>בשיתוף פעולה עם המחלקה למתמתיקה שימושית</h3>
-    \n
-    \n
     """,
     unsafe_allow_html=True
 )
@@ -493,21 +491,18 @@ with col2:
     # Slider for selecting percentage
     percentage = st.slider("", format=" ")
 
-    button_placeholder = st.empty()
-    button_placeholder = st.empty()
-    button_placeholder = st.empty()
-    button_placeholder = st.empty()
+    # Center the button using columns
+    button_col1, button_col2, button_col3 = st.columns([2, 1, 2])
+    with button_col2:
+        if st.button("Generate Plate"):
+            st.write(f"Generating plate with {percentage}%...")
+            generated_image = Generate_Plate(percentage / 100)
 
-    # Python code handling
-    if st.button("Generate Plate"):
-        st.write(f"Generating plate...")
-        generated_image = Generate_Plate(percentage / 100)
+            # Convert to PIL format for display
+            generated_image_pil = Image.fromarray(generated_image)
 
-        # Convert to PIL format for display
-        generated_image_pil = Image.fromarray(generated_image)
-
-        # Display the generated plate in the middle column
-        st.image(generated_image_pil, use_column_width=True)
+            # Display the generated plate in the middle column
+            st.image(generated_image_pil, use_column_width=True)
 
 with col3:
     st.image(image2, use_column_width=True)
